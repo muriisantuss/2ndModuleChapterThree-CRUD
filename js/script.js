@@ -1,3 +1,6 @@
+$("#inputPrice").mask("000.000.000.000.000,00", { reverse: true });
+
+
 let products = [
   {
     id: 1,
@@ -44,6 +47,25 @@ var categories = [
   },
 ];
 loadProducts();
+
+function save(){
+  console.log('dando certo')
+  let priceValue = document.getElementById("inputPrice").value.replace(/[^\d,]/g, '').replace(',', '.');
+  let priceNumber = parseFloat(priceValue);
+
+  let prod = {
+    id: products.length+1,
+    name: document.getElementById("inputName").value,
+    description: document.getElementById("inputDescription").value,
+    price: document.getElementById("inputPrice").value,
+    category: document.getElementById("selectCategory").value,
+    promotion: document.getElementById("checkBoxPromotion").checked,
+    new: document.getElementById("checkBoxNewProduct").checked,
+  }
+  addNewRow(prod)
+  products.push(prod)
+  document.getElementById("formProduct").reset()
+}
 
 function loadProducts() {
   for (let prod of products) {
