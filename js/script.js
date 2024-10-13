@@ -84,7 +84,9 @@ function addNewRow(prod) {
   newRow.insertCell().appendChild(nameNode);
 
   let descriptionNode = document.createTextNode(prod.description);
-  newRow.insertCell().appendChild(descriptionNode);
+  var cell = newRow.insertCell()
+  cell.className="d-none d-md-table-cell"
+  cell.appendChild(descriptionNode);
 
   var formatter = new Intl.NumberFormat('pt-BR', {
     style: 'currency',
@@ -105,7 +107,9 @@ function addNewRow(prod) {
   if (prod.new) {
     options += '<span class="badge bg-primary">L</span> ';
   }
+  cell = newRow.insertCell()
+  cell.className = 'd-none d-md-table-cell'
+  cell.innerHTML = options;
 
-  newRow.insertCell().innerHTML = options;
 }
 
